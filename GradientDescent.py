@@ -2,13 +2,17 @@ import matplotlib.pyplot as plt
 import random
 import numpy as np
 x_train=np.array([i for i in range(10)]) #features
-y_train=np.array([random.randrange(1,10,1) for i in range(10)]) #targetvalues
+y_train=np.array([random.randrange(1,100,1) for i in range(10)]) #targetvalues
+
+
 def model(x,y,w,b):
     m=x.shape[0]
     f_wb=np.zeros(m)
     for i in range(m):
         f_wb[i]=w*x[i]+b
     return f_wb
+
+
 def compute_value(x,y,w,b):
     m=x.shape[0]
     cost=0
@@ -17,6 +21,8 @@ def compute_value(x,y,w,b):
         cost=cost+(f_wb-y[i])**2
     total_cost=1/(2*m)*cost
     return total_cost
+
+
 def compute_gradient(x,y,w,b):
     m=x.shape[0]
     dj_dw=0
@@ -30,6 +36,8 @@ def compute_gradient(x,y,w,b):
     dj_dw/=m
     dj_db/=m
     return dj_dw,dj_db
+
+
 def gradient_descent(x,y,alpha,w_in,b_in,num_iter):
     b=b_in
     w=w_in
@@ -38,6 +46,8 @@ def gradient_descent(x,y,alpha,w_in,b_in,num_iter):
         b-=alpha*dj_db
         w-=alpha*dj_dw
     return w,b
+
+
 w_intial=0
 b_intial=0
 alpha_temp=1.0e-2 #learning rate
